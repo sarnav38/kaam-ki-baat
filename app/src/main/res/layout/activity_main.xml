@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:id="@+id/toolBar"
+            android:background="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:navigationIcon="@drawable/ic_baseline_menu_open_24"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolBar"
+            android:background="#C1E4E4">
+
+            <ImageButton
+                android:id="@+id/imageButton_P"
+                android:layout_width="185dp"
+                android:layout_height="170dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp"
+                android:contentDescription="@string/ConDes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/politics" />
+
+            <ImageButton
+                android:id="@+id/imageButton_N"
+                android:layout_width="185dp"
+                android:layout_height="170dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="15dp"
+                android:contentDescription="@string/ConDes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageButton_P"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/news" />
+
+            <ImageButton
+                android:id="@+id/imageButton_B"
+                android:layout_width="wrap_content"
+                android:layout_height="165dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/ConDes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton_P"
+                app:srcCompat="@drawable/bio" />
+
+            <ImageButton
+                android:id="@+id/imageButton_V"
+                android:layout_width="wrap_content"
+                android:layout_height="175dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/ConDes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton_B"
+                app:srcCompat="@drawable/videos" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        app:menu="@menu/navigation_menu"
+        app:headerLayout="@layout/navigation_header"
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"/>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
