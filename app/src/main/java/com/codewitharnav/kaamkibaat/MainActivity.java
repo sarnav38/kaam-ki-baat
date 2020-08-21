@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,6 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
     CardView btn_P,btn_N,btn_B,btn_V;
+    ProgressDialog pd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // create progress dialog
+        pd = new ProgressDialog(MainActivity.this);
 
         //Nav coding here
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
@@ -36,46 +41,14 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setItemIconTintList(null);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                UserMenuSelected(item);
-                return false;
-            }
+        navigationView.setNavigationItemSelectedListener(item -> {
+            UserMenuSelected(item);
+            return false;
         });
         btn_P =findViewById(R.id.cardView1);
         btn_N =findViewById(R.id.cardView2);
         btn_B =findViewById(R.id.cardView);
         btn_V =findViewById(R.id.cardView3);
-
-        // render video button to Kaam ki baat channel
-        btn_V.setOnClickListener(view -> {
-            Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.youtube.com/channel/UC3dzH7JgfIzm2na8QhIIscg"));
-            try {
-                MainActivity.this.startActivity(webIntent);
-            } catch (ActivityNotFoundException ignored) {
-            }
-        });
-        // render to politics pages.
-        btn_P.setOnClickListener(view -> {
-
-            Intent Politics_page = new Intent(MainActivity.this, Politics.class);
-            startActivity(Politics_page);
-        });
-        // render to News pages.
-        btn_N.setOnClickListener(view -> {
-            Intent News_page = new Intent(MainActivity.this, News.class);
-            startActivity(News_page);
-
-        });
-        // render to Biography pages.
-        btn_B.setOnClickListener(view -> {
-            Intent Bio_page = new Intent(MainActivity.this, Biography.class);
-            startActivity(Bio_page);
-
-        });
-
     }
 
     @Override
@@ -118,4 +91,49 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        btn_V.setOnClickListener(view -> {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://www.youtube.com/channel/UC3dzH7JgfIzm2na8QhIIscg"));
+            try {
+                MainActivity.this.startActivity(webIntent);
+            } catch (ActivityNotFoundException ignored) {
+            }
+        });
+        // render to politics pages.
+        btn_P.setOnClickListener(view -> {
+            pd.show();
+            pd.setMessage("Loading............");
+            pd.setContentView(R.layout.pd_lo);
+            pd.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            Intent Politics_page = new Intent(MainActivity.this, Politics.class);
+            startActivity(Politics_page);
+        });
+        // render to News pages.
+        btn_N.setOnClickListener(view -> {
+            pd.show();
+            pd.setMessage("Loading............");
+            pd.setContentView(R.layout.pd_lo);
+            pd.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            Intent News_page = new Intent(MainActivity.this, News.class);
+            startActivity(News_page);
+
+        });
+        // render to Biography pages.
+        btn_B.setOnClickListener(view -> {
+            pd.show();
+            pd.setMessage("Loading............");
+            pd.setContentView(R.layout.pd_lo);
+            pd.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            Intent Bio_page = new Intent(MainActivity.this, Biography.class);
+            startActivity(Bio_page);
+        });
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        pd.dismiss();
+    }
 }

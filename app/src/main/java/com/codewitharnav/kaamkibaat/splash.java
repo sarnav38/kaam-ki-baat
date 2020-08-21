@@ -8,11 +8,19 @@ import androidx.dynamicanimation.animation.SpringForce;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import static java.lang.Thread.sleep;
 
 public class splash extends AppCompatActivity {
 //    ImageView im;
+    ImageView img;
+    TextView txt;
+    Animation img_anim;
+    Animation txt_anim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,10 +29,18 @@ public class splash extends AppCompatActivity {
 //        im = findViewById(R.id.imageView_an);
 //        Animation myanim = AnimationUtils.loadAnimation(this,R.anim.myanim);
 //        im.startAnimation(myanim);
-        View im = findViewById(R.id.imageView_an);
-        View t = findViewById(R.id.textView);
-        Spring(im,400f);
-        Spring(t,-440f);
+//        View im = findViewById(R.id.imageView_an);
+//        View t = findViewById(R.id.textView);
+//        Spring(im,400f);
+//        Spring(t,-440f);
+        img = findViewById(R.id.imageView);
+        txt = findViewById(R.id.textView);
+
+        img_anim = AnimationUtils.loadAnimation(this,R.anim.img_anim);
+        txt_anim = AnimationUtils.loadAnimation(this,R.anim.txt_anim);
+
+        img.setAnimation(img_anim);
+        txt.setAnimation(txt_anim);
 
 
 
@@ -32,9 +48,10 @@ public class splash extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    sleep(3000);
+                    sleep(3500);
                     Intent i = new Intent(splash.this, MainActivity.class);
                     startActivity(i);
+                    finish();
 
                 }catch (InterruptedException e){
                     e.printStackTrace();
