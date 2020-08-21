@@ -1,4 +1,4 @@
-package com.codewitharnav.kaamkibaat;
+package com.codewitharnav.kaamkibaat.politics;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -17,6 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.codewitharnav.kaamkibaat.MainActivity;
+import com.codewitharnav.kaamkibaat.R;
+import com.codewitharnav.kaamkibaat.bio.Biography;
+import com.codewitharnav.kaamkibaat.news.News;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
@@ -80,7 +84,7 @@ public class Politics extends AppCompatActivity {
 
     public void UserMenuSelected(MenuItem item){
         if (item.getItemId() == R.id.nav_home){
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
         else if (item.getItemId() == R.id.nav_politics){
@@ -88,11 +92,11 @@ public class Politics extends AppCompatActivity {
             startActivity(intent);
         }
         else if (item.getItemId() == R.id.nav_news){
-            Intent intent = new Intent(this,News.class);
+            Intent intent = new Intent(this, News.class);
             startActivity(intent);
         }
         else if (item.getItemId() == R.id.nav_bio){
-            Intent intent = new Intent(this,Biography.class);
+            Intent intent = new Intent(this, Biography.class);
             startActivity(intent);
         }
         else if (item.getItemId() == R.id.nav_vid){

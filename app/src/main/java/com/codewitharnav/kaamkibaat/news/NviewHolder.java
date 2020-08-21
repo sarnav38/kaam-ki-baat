@@ -1,4 +1,4 @@
-package com.codewitharnav.kaamkibaat;
+package com.codewitharnav.kaamkibaat.news;
 
 import android.app.Application;
 import android.text.Html;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.codewitharnav.kaamkibaat.R;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Callback;

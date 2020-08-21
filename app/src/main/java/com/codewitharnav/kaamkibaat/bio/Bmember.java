@@ -1,4 +1,4 @@
-package com.codewitharnav.kaamkibaat;
+package com.codewitharnav.kaamkibaat.bio;
 
 public class Bmember {
     String title,content,image_url;

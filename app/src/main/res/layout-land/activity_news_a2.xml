@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewsA2">
+    tools:context=".news.NewsA2">
 
     <ImageView
         android:id="@+id/imageView_N_A2_1"

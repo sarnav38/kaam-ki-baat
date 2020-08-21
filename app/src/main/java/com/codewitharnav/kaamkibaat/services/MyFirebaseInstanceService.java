@@ -8,12 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
-import android.text.Html;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.codewitharnav.kaamkibaat.Politics;
+import com.codewitharnav.kaamkibaat.politics.Politics;
 import com.codewitharnav.kaamkibaat.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;

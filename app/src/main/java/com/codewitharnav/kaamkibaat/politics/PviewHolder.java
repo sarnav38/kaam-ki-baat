@@ -1,4 +1,4 @@
-package com.codewitharnav.kaamkibaat;
+package com.codewitharnav.kaamkibaat.politics;
 
 import android.app.Application;
 import android.text.Html;
@@ -9,14 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.codewitharnav.kaamkibaat.R;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Callback;
 
-public class BviewHolder extends RecyclerView.ViewHolder {
+public class PviewHolder extends RecyclerView.ViewHolder {
     View view;
 
-    public BviewHolder(@NonNull View itemView) {
+    public PviewHolder(@NonNull View itemView) {
         super(itemView);
         view =itemView;
 
@@ -37,10 +38,10 @@ public class BviewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void Bsetdetails(Application application, String title, String content, String image_url) {
-        TextView mtitle = view.findViewById(R.id.textView_B_2);
-        TextView mcontent = view.findViewById(R.id.textView_B_3);
-        ImageView mimage = view.findViewById(R.id.imageView_B);
+    public void Psetdetails(Application application, String title, String content, String image_url) {
+        TextView mtitle = view.findViewById(R.id.textView_P_2);
+        TextView mcontent = view.findViewById(R.id.textView_P_3);
+        ImageView mimage = view.findViewById(R.id.imageView_P);
 
         mtitle.setText(Html.fromHtml(title));
         mcontent.setText(content);
@@ -57,14 +58,15 @@ public class BviewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    private BviewHolder.ClickListener mClicklistener;
+    private PviewHolder.ClickListener mClicklistener;
 
     public interface  ClickListener{
         void onItemclick(View view, int position);
         void onItemLongclick(View view, int position);
 
     }
-    public  void setOnClicklistener(BviewHolder.ClickListener clicklistener){
+    public  void setOnClicklistener(PviewHolder.ClickListener clicklistener){
         mClicklistener = clicklistener;
     }
 }
+

@@ -1,7 +1,6 @@
-package com.codewitharnav.kaamkibaat;
+package com.codewitharnav.kaamkibaat.bio;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,29 +8,26 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.codewitharnav.kaamkibaat.MainActivity;
+import com.codewitharnav.kaamkibaat.news.News;
+import com.codewitharnav.kaamkibaat.politics.Politics;
+import com.codewitharnav.kaamkibaat.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-public class News extends AppCompatActivity {
+public class Biography extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -40,21 +36,20 @@ public class News extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
     String mtitle,mcontent,mimage;
-    int id =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news);
+        setContentView(R.layout.activity_biography);
 
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Kaam ki Baat - News");
+        getSupportActionBar().setTitle("Kaam ki Baat - Biography");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Nav coding here
         drawerLayout = findViewById(R.id.drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(News.this,drawerLayout,R.string.drw_op,R.string.drw_cl);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(Biography.this,drawerLayout,R.string.drw_op,R.string.drw_cl);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setItemIconTintList(null);
@@ -65,18 +60,15 @@ public class News extends AppCompatActivity {
                 return false;
             }
         });
-
         // firebase code
         mRecyclerView = findViewById(R.id.RV);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        reference = firebaseDatabase.getReference("News");
+        reference = firebaseDatabase.getReference("Biography");
         reference.keepSynced(true);
-
     }
-
     // on other than menu item selected
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
@@ -88,15 +80,15 @@ public class News extends AppCompatActivity {
     //  class for menuitem selected
     public void UserMenuSelected(MenuItem item){
         if (item.getItemId() == R.id.nav_home){
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
         else if (item.getItemId() == R.id.nav_politics){
-            Intent intent = new Intent(this,Politics.class);
+            Intent intent = new Intent(this, Politics.class);
             startActivity(intent);
         }
         else if (item.getItemId() == R.id.nav_news){
-            Intent intent = new Intent(this,News.class);
+            Intent intent = new Intent(this, News.class);
             startActivity(intent);
         }
         else if (item.getItemId() == R.id.nav_bio){
@@ -107,7 +99,7 @@ public class News extends AppCompatActivity {
             Intent webIntent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse("https://www.youtube.com/channel/UC3dzH7JgfIzm2na8QhIIscg"));
             try {
-                News.this.startActivity(webIntent);
+                Biography.this.startActivity(webIntent);
             } catch (ActivityNotFoundException ignored) {
             }
         }
@@ -117,33 +109,32 @@ public class News extends AppCompatActivity {
         }
 
     }
-
     // on Start render recycler view
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseRecyclerOptions<Nmember> options =
-                new FirebaseRecyclerOptions.Builder<Nmember>()
-                        .setQuery(reference, Nmember.class)
+        FirebaseRecyclerOptions<Bmember> options =
+                new FirebaseRecyclerOptions.Builder<Bmember>()
+                        .setQuery(reference, Bmember.class)
                         .build();
 
 
-        FirebaseRecyclerAdapter<Nmember, NviewHolder> firebaseRecyclerAdapter =
-                new FirebaseRecyclerAdapter<Nmember, NviewHolder>(options) {
+        FirebaseRecyclerAdapter<Bmember, BviewHolder> firebaseRecyclerAdapter =
+                new FirebaseRecyclerAdapter<Bmember, BviewHolder>(options) {
 
 
                     @Override
-                    protected void onBindViewHolder(@NonNull NviewHolder viewHandler, int position, @NonNull Nmember member) {
-                        viewHandler.Nsetdetails(getApplication(), member.getTitle(), member.getContent(), member.getImage_url());
+                    protected void onBindViewHolder(@NonNull BviewHolder viewHandler, int position, @NonNull Bmember member) {
+                        viewHandler.Bsetdetails(getApplication(), member.getTitle(), member.getContent(), member.getImage_url());
 
-                        viewHandler.setOnClicklistener(new NviewHolder.ClickListener() {
+                        viewHandler.setOnClicklistener(new BviewHolder.ClickListener() {
                             @Override
                             public void onItemclick(View view, int position) {
                                 mtitle = getItem(position).getTitle();
                                 mcontent = getItem(position).getContent();
                                 mimage = getItem(position).getImage_url();
 
-                                Intent intent = new Intent(News.this, NewsA2.class);
+                                Intent intent = new Intent(Biography.this, BiographyA2.class);
                                 intent.putExtra("title", mtitle);
                                 intent.putExtra("content", mcontent);
                                 intent.putExtra("image", mimage);
@@ -156,13 +147,14 @@ public class News extends AppCompatActivity {
                     }
                     @NonNull
                     @Override
-                    public NviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                    public BviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                         View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.news_row, parent, false);
-                        return new NviewHolder(view);
+                                .inflate(R.layout.biography_row, parent, false);
+                        return new BviewHolder(view);
                     }
                 };
         firebaseRecyclerAdapter.startListening();
         mRecyclerView.setAdapter(firebaseRecyclerAdapter);
     }
+
 }

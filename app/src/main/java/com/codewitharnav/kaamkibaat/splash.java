@@ -8,9 +8,6 @@ import androidx.dynamicanimation.animation.SpringForce;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 
 import static java.lang.Thread.sleep;
 
@@ -36,7 +33,7 @@ public class splash extends AppCompatActivity {
             public void run() {
                 try {
                     sleep(3000);
-                    Intent i = new Intent(splash.this,MainActivity.class);
+                    Intent i = new Intent(splash.this, MainActivity.class);
                     startActivity(i);
 
                 }catch (InterruptedException e){

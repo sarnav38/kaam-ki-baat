@@ -4,8 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+
+import com.codewitharnav.kaamkibaat.bio.Biography;
+import com.codewitharnav.kaamkibaat.news.News;
+import com.codewitharnav.kaamkibaat.politics.Politics;
 import com.google.firebase.database.FirebaseDatabase;
-import com.onesignal.OSNotificationAction;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
 import com.squareup.picasso.OkHttp3Downloader;

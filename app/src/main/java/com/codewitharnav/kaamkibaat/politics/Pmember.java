@@ -1,4 +1,4 @@
-package com.codewitharnav.kaamkibaat;
+package com.codewitharnav.kaamkibaat.politics;
 
 public class Pmember {
     String title,content,image_url;

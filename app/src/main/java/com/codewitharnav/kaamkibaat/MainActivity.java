@@ -4,19 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ImageButton;
-
+import com.codewitharnav.kaamkibaat.bio.Biography;
+import com.codewitharnav.kaamkibaat.news.News;
+import com.codewitharnav.kaamkibaat.politics.Politics;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
-    ImageButton btn_P,btn_N,btn_B,btn_V;
+    CardView btn_P,btn_N,btn_B,btn_V;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        btn_P =findViewById(R.id.imageButton_P);
-        btn_N =findViewById(R.id.imageButton_N);
-        btn_B =findViewById(R.id.imageButton_B);
-        btn_V =findViewById(R.id.imageButton_V);
+        btn_P =findViewById(R.id.cardView1);
+        btn_N =findViewById(R.id.cardView2);
+        btn_B =findViewById(R.id.cardView);
+        btn_V =findViewById(R.id.cardView3);
 
         // render video button to Kaam ki baat channel
         btn_V.setOnClickListener(view -> {
@@ -58,18 +60,18 @@ public class MainActivity extends AppCompatActivity {
         // render to politics pages.
         btn_P.setOnClickListener(view -> {
 
-            Intent Politics_page = new Intent(MainActivity.this,Politics.class);
+            Intent Politics_page = new Intent(MainActivity.this, Politics.class);
             startActivity(Politics_page);
         });
         // render to News pages.
         btn_N.setOnClickListener(view -> {
-            Intent News_page = new Intent(MainActivity.this,News.class);
+            Intent News_page = new Intent(MainActivity.this, News.class);
             startActivity(News_page);
 
         });
         // render to Biography pages.
         btn_B.setOnClickListener(view -> {
-            Intent Bio_page = new Intent(MainActivity.this,Biography.class);
+            Intent Bio_page = new Intent(MainActivity.this, Biography.class);
             startActivity(Bio_page);
 
         });

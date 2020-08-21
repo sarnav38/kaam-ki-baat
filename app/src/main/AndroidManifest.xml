@@ -15,17 +15,17 @@
         <meta-data android:name="com.onesignal.NotificationOpened.DEFAULT"
             android:value="DISABLE" />
         <activity
-            android:name=".BiographyA2"
+            android:name=".bio.BiographyA2"
             android:theme="@style/AppTheme_1" />
         <activity
-            android:name=".NewsA2"
+            android:name=".news.NewsA2"
             android:theme="@style/AppTheme_1" />
         <activity
-            android:name=".PoliticsA2"
+            android:name=".politics.PoliticsA2"
             android:theme="@style/AppTheme_1" />
-        <activity android:name=".Biography" />
-        <activity android:name=".News" />
-        <activity android:name=".Politics" />
+        <activity android:name=".bio.Biography" />
+        <activity android:name=".news.News" />
+        <activity android:name=".politics.Politics" />
         <activity android:name=".MainActivity" />
         <activity android:name=".splash"
             android:noHistory="true">

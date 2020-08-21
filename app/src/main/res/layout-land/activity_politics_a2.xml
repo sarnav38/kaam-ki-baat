@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PoliticsA2">
+    tools:context=".politics.PoliticsA2">
 
     <ImageView
         android:id="@+id/imageView_P_A2_1"

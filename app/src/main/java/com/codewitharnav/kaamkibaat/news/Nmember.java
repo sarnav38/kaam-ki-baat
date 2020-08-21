@@ -1,4 +1,4 @@
-package com.codewitharnav.kaamkibaat;
+package com.codewitharnav.kaamkibaat.news;
 
 public class Nmember {
     String title,content,image_url;
