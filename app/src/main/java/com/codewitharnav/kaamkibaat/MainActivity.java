@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
     CardView btn_P,btn_N,btn_B,btn_V;
     ProgressDialog pd;
+    NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +40,8 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout,R.string.drw_op,R.string.drw_cl);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        NavigationView navigationView = findViewById(R.id.navigation_view);
-        navigationView.setItemIconTintList(null);
-        navigationView.setNavigationItemSelectedListener(item -> {
-            UserMenuSelected(item);
-            return false;
-        });
+        navigationView = findViewById(R.id.navigation_view);
+
         btn_P =findViewById(R.id.cardView1);
         btn_N =findViewById(R.id.cardView2);
         btn_B =findViewById(R.id.cardView);
@@ -64,14 +61,23 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else if (item.getItemId() == R.id.nav_politics){
+            pd.show();
+            pd.setContentView(R.layout.pd_lo);
+            pd.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             Intent intent = new Intent(this,Politics.class);
             startActivity(intent);
         }
         else if (item.getItemId() == R.id.nav_news){
+            pd.show();
+            pd.setContentView(R.layout.pd_lo);
+            pd.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             Intent intent = new Intent(this,News.class);
             startActivity(intent);
         }
         else if (item.getItemId() == R.id.nav_bio){
+            pd.show();
+            pd.setContentView(R.layout.pd_lo);
+            pd.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             Intent intent = new Intent(this,Biography.class);
             startActivity(intent);
         }
@@ -94,6 +100,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        navigationView.setItemIconTintList(null);
+        navigationView.setNavigationItemSelectedListener(item -> {
+            UserMenuSelected(item);
+            return false;
+        });
         btn_V.setOnClickListener(view -> {
             Intent webIntent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse("https://www.youtube.com/channel/UC3dzH7JgfIzm2na8QhIIscg"));
@@ -105,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
         // render to politics pages.
         btn_P.setOnClickListener(view -> {
             pd.show();
-            pd.setMessage("Loading............");
             pd.setContentView(R.layout.pd_lo);
             pd.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             Intent Politics_page = new Intent(MainActivity.this, Politics.class);
@@ -114,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
         // render to News pages.
         btn_N.setOnClickListener(view -> {
             pd.show();
-            pd.setMessage("Loading............");
             pd.setContentView(R.layout.pd_lo);
             pd.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             Intent News_page = new Intent(MainActivity.this, News.class);
@@ -124,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
         // render to Biography pages.
         btn_B.setOnClickListener(view -> {
             pd.show();
-            pd.setMessage("Loading............");
             pd.setContentView(R.layout.pd_lo);
             pd.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
             Intent Bio_page = new Intent(MainActivity.this, Biography.class);
