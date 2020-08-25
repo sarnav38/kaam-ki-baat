@@ -13,9 +13,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.codewitharnav.kaamkibaat.MainActivity;
 import com.codewitharnav.kaamkibaat.politics.Politics;
@@ -37,6 +39,7 @@ public class News extends AppCompatActivity {
     DatabaseReference reference;
     String mtitle,mcontent,mimage;
     int id =0;
+    SearchView searchview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +116,7 @@ public class News extends AppCompatActivity {
         }
 
     }
-
+    
     // on Start render recycler view
     @Override
     protected void onStart() {
@@ -160,5 +163,6 @@ public class News extends AppCompatActivity {
                 };
         firebaseRecyclerAdapter.startListening();
         mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+
     }
 }
