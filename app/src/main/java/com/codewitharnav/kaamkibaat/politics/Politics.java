@@ -35,6 +35,7 @@ public class Politics extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
     String url,mtitle,mcontent,mimage;
+    RecyclerView.LayoutManager manager;
 
 
     @Override
@@ -65,6 +66,8 @@ public class Politics extends AppCompatActivity {
         // firebase code
         mRecyclerView = findViewById(R.id.RV);
         mRecyclerView.setHasFixedSize(true);
+//        manager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         firebaseDatabase = FirebaseDatabase.getInstance();
